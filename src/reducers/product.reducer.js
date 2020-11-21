@@ -131,9 +131,7 @@ const order = (state = { data: [], page: 1, totalpage: null}, action) => {
         default: return state
     }
 }
-const product = (state = {
-    data: [], page: 1, totalpage: null
-}, action) => {
+const product = (state = {data: [], page: 1, totalpage: null}, action) => {
     switch(action.type){
         case productTypes.SET_PRODUCT: {
             return {

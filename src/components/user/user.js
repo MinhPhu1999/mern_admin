@@ -184,11 +184,11 @@ class User extends Component {
     );
   };
   renderBtn = () => {
-    const {
-      email,
-      name,
-      is_admin
-    } = this.state;
+    // const {
+    //   email,
+    //   name,
+    //   is_admin
+    // } = this.state;
     if (this.state.currType === "add") {
       return (
         <div className="form-group">
@@ -229,7 +229,7 @@ class User extends Component {
   };
   reset = () => {
     this.setState({
-      name: null,
+      //name: null,
       id: null,
       noti: null,
       email: "",

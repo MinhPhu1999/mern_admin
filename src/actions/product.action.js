@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { productTypes } from '../constants/action.types'
+
+//product
 export const getProduct = () => async (dispatch, getState) => {
     let res
     // try {
@@ -9,7 +11,7 @@ export const getProduct = () => async (dispatch, getState) => {
     //     })
     // }
     try {
-        res = await axios.post('http://localhost:8080/product/getallproduct' + getState().productReducers.product.page)
+        res = await axios.get('http://localhost:8080/product/getallproduct/' + getState().productReducers.product.page)
     }
     catch (err) {
         console.log(err)
@@ -18,10 +20,67 @@ export const getProduct = () => async (dispatch, getState) => {
     dispatch(setProduct(res.data.data))
     dispatch(setTotalPage(res.data.totalPage))
 }
+export const deleteProduct = (id) => async(dispatch, getState) => {
+    //let res
+    try {
+        //res = 
+        await axios.put('http://localhost:8080/admin/deleteproduct/' +id)
+    }
+    catch (err) {
+        console.log(err)
+        return
+    }
+    //console.log(res)
+    dispatch(getProduct())
+}
+export const addProduct = (id_category, name, price, description, id_brand, file) => async (dispatch, getState) => {
+    let data = new FormData()
+    data.append('file', file)
+    data.append('id_category', id_category) 
+    data.append('name', name) 
+    data.append('price', price)  
+    data.append('description', description)
+    data.append('id_brand', id_brand)
+    //let res
+    try {
+        //res = 
+        await axios.post('http://localhost:8080/admin/addproduct', data)
+    }
+    catch(err) {
+        dispatch(addProductFail())
+        return
+    } 
+    dispatch(addProductSuccess())
+    dispatch(getProduct())
+}
+export const updateProduct = (id, name, id_category, price, description, id_brand, file) => async (dispatch, getState) => {
+    let data = new FormData()
+    data.append('file', file)
+    data.append('id', id)
+    data.append('id_category', id_category) 
+    data.append('name', name) 
+    data.append('price', price)  
+    data.append('description', description)
+    data.append('id_brand', id_brand)
+    //let res
+    try {
+        //res = 
+        await axios.post('http://localhost:8080/admin/updateproduct', data)
+    }
+    catch(err) {
+        dispatch(updateProductFail())
+        return
+    } 
+    dispatch(updateProductSuccess())
+    dispatch(getProduct())
+}
+
 export const setProduct = (data) => ({
     type: productTypes.SET_PRODUCT,
     data
 })
+
+
 export const setPage = (page) => ({
     type: productTypes.SET_PAGE,
     page
@@ -48,18 +107,6 @@ export const categorySetTotalPage = (totalpage) => ({
 })
 
 
-export const deleteProduct = (id) => async(dispatch, getState) => {
-    let res
-    try {
-        res = await axios.get('http://localhost:8080/admin/deleteproduct/' +id)
-    }
-    catch (err) {
-        console.log(err)
-        return
-    }
-    console.log(res)
-    dispatch(getProduct())
-}
 
 export const getCategory = () => async (dispatch, getState) =>  {
     let res
@@ -263,52 +310,7 @@ export const updateProductSuccess = () => ({
 export const updateProductFail = () => ({
     type: productTypes.UPDATE_PRODUCT_FAIL
 })
-export const addProduct = (id_category, name, price, release_date, describe, id_nsx, id_brand, file) =>
- async (dispatch, getState) => {
-    let data = new FormData()
-    data.append('file', file)
-    data.append('id_category', id_category) 
-    data.append('name', name) 
-    data.append('price', price)  
-    data.append('release_date', release_date)
-    data.append('describe', describe)
-    data.append('id_nsx', id_nsx)
-    data.append('id_brand', id_brand)
-    //let res
-    try {
-        //res = 
-        await axios.post('http://localhost:8080/admin/addproduct', data)
-    }
-    catch(err) {
-        dispatch(addProductFail())
-        return
-    } 
-    dispatch(addProductSuccess())
-    dispatch(getProduct())
-}
-export const updateProduct = (id, name, id_category, price, release_date, describe, id_nsx, id_brand, file) => async (dispatch, getState) => {
-    let data = new FormData()
-    data.append('file', file)
-    data.append('id', id)
-    data.append('id_category', id_category) 
-    data.append('name', name) 
-    data.append('price', price)  
-    data.append('release_date', release_date)
-    data.append('describe', describe)
-    data.append('id_nsx', id_nsx)
-    data.append('id_brand', id_brand)
-    //let res
-    try {
-        //res = 
-        await axios.post('http://localhost:8080/admin/updateproduct', data)
-    }
-    catch(err) {
-        dispatch(updateProductFail())
-        return
-    } 
-    dispatch(updateProductSuccess())
-    dispatch(getProduct())
-}
+
 export const setOrder = (data) => ({
     type: productTypes.ORDER_SET_DATA,
     data

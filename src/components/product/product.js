@@ -161,8 +161,6 @@ class Product extends Component {
         noti: ""
       });
     }
-
-
     if (file === null) {
       this.setState({
         noti: "File invalid"
@@ -191,7 +189,8 @@ class Product extends Component {
       id_brand,
       file,
       id, 
-      img
+      img,
+      status
     } = this.state;
     if (name.length <= 0) {
       this.setState({
@@ -250,7 +249,8 @@ class Product extends Component {
       price,
       description,
       id_brand,
-      file
+      file,
+      status
     );
   };
   renderBtnSubmit = () => {
@@ -294,8 +294,8 @@ class Product extends Component {
   };
   reset = () => {
     this.setState({
-      noti: "",
-        name: "",
+        noti: "",
+        //name: "",
         file: null,
         imagePreviewUrl: null,
         curr: "add",
@@ -307,7 +307,7 @@ class Product extends Component {
         description: "",
         id_brand: "",
         id_category: "",
-        noti: "",
+        //noti: "",
         id: null
     })
   }
@@ -391,10 +391,13 @@ class Product extends Component {
                       <i className="icon_profile" /> Name
                     </th>
                     <th>
-                      <i className="icon_mail_alt" /> Price
+                      <i className="icon_currency" /> Price
                     </th>
                     <th>
                       <i className="icon_pin_alt" /> Description
+                    </th>
+                    <th>
+                      <i className="icon_check_alt2" /> Status
                     </th>
                     <th>
                       <i className="icon_cogs" /> Action
@@ -406,6 +409,7 @@ class Product extends Component {
                         <td>{element.name}</td>
                         <td>{element.price}</td>
                         <td style={{ width: "40%" }}>{element.description}</td>
+                        <td>{element.status.toString()}</td>
                         <td>
                           <div className="btn-group">
                             <a
@@ -424,7 +428,8 @@ class Product extends Component {
                                     element.id_brand
                                   ),
                                   img: element.img,
-                                  id: element._id
+                                  id: element._id,
+                                  status: element.status
                                 })
                               }
                               className="btn btn-success"
@@ -581,8 +586,30 @@ class Product extends Component {
                       <div className="col-lg-10">
                         <img
                           src={this.state.img}
-                          style={{ maxWidth: "300px" }}
+                          style={{ maxWidth: "100px" }}
                         />
+                      </div>
+                    </div>
+                    <div className="form-group" id='status'>
+                      <div className="col-lg-offset-2 col-lg-10" >
+                        <form>
+                          <label class="radio-inline">
+                            <input
+                              checked={this.state.status}
+                              onClick={() => this.setState({ status: true })}
+                              type="radio"
+                              name="optradio"
+                            />True
+                          </label>
+                          <label class="radio-inline">
+                            <input
+                              checked={!this.state.status}
+                              onClick={() => this.setState({ status: false })}
+                              type="radio"
+                              name="optradio"
+                            />False
+                          </label>
+                        </form>
                       </div>
                     </div>
                     <div className="form-group">
