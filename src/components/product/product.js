@@ -590,8 +590,11 @@ class Product extends Component {
                         />
                       </div>
                     </div>
-                    <div className="form-group" id='status'>
-                      <div className="col-lg-offset-2 col-lg-10" >
+                    <div className="form-group">
+                    <label for="comment" className="control-label col-lg-2">
+                        Status
+                      </label>
+                      <div className="col-lg-10" >
                         <form>
                           <label class="radio-inline">
                             <input

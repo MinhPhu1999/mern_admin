@@ -90,9 +90,9 @@ class Order extends Component {
                 </span>
                 <select onChange={e => this.props.getOrder(e.target.value)}>
                   <option
-                    value=""
+                    value="false"
                     disabled
-                    selected
+                    selected 
                     style={{ display: "none" }}
                   >
                     Status
@@ -104,11 +104,24 @@ class Order extends Component {
               <table className="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Date</th>
-                    <th>Products</th>
+                    <th>
+                      <i className="icon_profile" /> Name
+                    </th>
+                    <th>
+                      <i className="icon_pin_alt" />Address  
+                    </th>
+                    <th>
+                      <i className="icon_mail_alt" /> Email
+                    </th>
+                    <th>
+                      <i className="icon_phone" /> Phone
+                    </th>
+                    <th>
+                      <i className="icon_calendar" />  Date
+                    </th>
+                    <th>
+                      <i className=" icon_cart" /> Products
+                    </th>
                   </tr>
                   {this.props.order.map((element, index) => {
                     return (
@@ -117,14 +130,11 @@ class Order extends Component {
                         <td>
                           {element.address +
                             ", " +
-                            element.ward +
-                            ", " +
-                            element.district +
-                            ", " +
                             element.city}
                         </td>
+                        <td>{element.email}</td>
                         <td>{element.phone}</td>
-                        <td>{element.date.substring(0, 10)}</td>
+                        <td>{element.order_date.substring(0, 10)}</td>
                         <td>
                           <select>
                             <option
@@ -135,7 +145,7 @@ class Order extends Component {
                             >
                               Products
                             </option>
-                            {element.products.map((item, index) => {
+                            {element.cart.map((item, index) => {
                               return (
                                   <option>
                                       {item.name + " - " + item.count}

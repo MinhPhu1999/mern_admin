@@ -53,7 +53,7 @@ export const addProduct = (id_category, name, price, description, id_brand, file
     dispatch(addProductSuccess())
     dispatch(getProduct())
 }
-export const updateProduct = (id, name, id_category, price, description, id_brand, file) => async (dispatch, getState) => {
+export const updateProduct = (id, name, id_category, price, description, id_brand, file, status) => async (dispatch, getState) => {
     let data = new FormData()
     data.append('file', file)
     data.append('id', id)
@@ -62,10 +62,11 @@ export const updateProduct = (id, name, id_category, price, description, id_bran
     data.append('price', price)  
     data.append('description', description)
     data.append('id_brand', id_brand)
+    data.append('status', status)
     //let res
     try {
         //res = 
-        await axios.post('http://localhost:8080/admin/updateproduct', data)
+        await axios.put('http://localhost:8080/admin/updateproduct', data)
     }
     catch(err) {
         dispatch(updateProductFail())
