@@ -98,13 +98,13 @@ class Product extends Component {
     var str = t.toString();
     let count = 0;
     for (let i = 0; i < str.length; i++) {
-      if (str.charAt(i) == "+" || str.charAt(i) == "-") count++;
+      if (str.charAt(i) === "+" || str.charAt(i) === "-") count++;
       else break;
     }
     str = str.substring(count, str.length);
     count = 0;
     for (let i = 0; i < str.length; i++) {
-      if (str.charAt(i) == ".") {
+      if (str.charAt(i) === ".") {
         count++;
       }
       if (str.charAt(i) < "0" || str.charAt(i) > "9") return false;

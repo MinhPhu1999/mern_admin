@@ -452,7 +452,7 @@ class User extends Component {
                         />
                       </div>
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                       <div className="col-lg-offset-2 col-lg-10">
                         <form>
                           <label class="radio-inline">
@@ -473,7 +473,7 @@ class User extends Component {
                           </label>
                         </form>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="form-group">
                       <div className="col-lg-offset-2 col-lg-10">
                         <p>{this.state.noti}</p>
