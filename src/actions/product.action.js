@@ -11,7 +11,7 @@ export const getProduct = () => async (dispatch, getState) => {
     //     })
     // }
     try {
-        res = await axios.get('http://localhost:8080/product/getallproduct/' + getState().productReducers.product.page)
+        res = await axios.get('https://backendheroku112.herokuapp.com/admin/getallproduct/' + getState().productReducers.product.page)
     }
     catch (err) {
         console.log(err)

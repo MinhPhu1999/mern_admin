@@ -132,7 +132,7 @@ export const auth = () => async (dispatch, getState)  => {
     //let res
     try {
         //res = 
-        await axios.post('http://localhost:8080/auth', {
+        await axios.post('https://backendheroku112.herokuapp.com/auth', {
             email: email,
             token: token,
         })
